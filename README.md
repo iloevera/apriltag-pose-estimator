@@ -2,6 +2,8 @@
 
 Estimate a robot's 2D global pose (X, Y, Yaw) using AprilTags with known positions.
 
+<img width="1743" height="831" alt="image" src="https://github.com/user-attachments/assets/1f60da5f-e0f8-4e62-8225-0f46cc36436f" />
+
 ## Installation
 
 ```bash
