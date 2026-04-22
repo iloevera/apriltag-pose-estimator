@@ -7,25 +7,30 @@ Estimate a robot's 2D global pose (X, Y, Yaw) using AprilTags with known positio
 ## Installation
 
 ```bash
-pip install apriltag-pose-estimator
+# Clone the repository
+git clone https://github.com/iloevera/apriltag-pose-estimator.git
+cd apriltag-pose-estimator
+
+# Install in editable mode with dependencies
+pip install -e .
 ```
 
-## Quick Start
-```py
-from apriltag_pose_estimator import PoseEstimator, CameraCalibration, AprilTagMap
-import cv2
+## Quick Start (Demo)
 
-calibration = CameraCalibration.from_yaml("path/to/calibration.yaml")
-tag_map = AprilTagMap.from_json("path/to/tag_map.json")
-estimator = PoseEstimator(calibration, tag_map)
+1. **Calibrate your camera**:
+   ```bash
+   apriltag-calibrate --camera-index 0 --output config/my_camera.yaml
+   ```
+   *   Hold a 9x6 chessboard (24mm squares) in front of the camera.
+   *   Press **SPACE** to capture frames (need ~20).
+   *   Press **Q** to finish and save.
 
-cap = cv2.VideoCapture(0)
-ret, frame = cap.read()
-pose = estimator.estimate_pose(frame)
-print(f"Position: ({pose.x}, {pose.y}), Yaw: {pose.yaw}")
-```
+2. **Run the demo**:
+   ```bash
+   python examples/live_localization_demo.py --calibration config/my_camera.yaml
+   ```
 
-## Getting Started
+## Development Setup
 
 ### 1. Print the AprilTags
 
@@ -44,7 +49,7 @@ pip install -r requirements.txt
 ### 3. Calibrate Your Camera
 
 ```bash
-python camera_calibration.py
+apriltag-calibrate
 ```
 
 1. Place the **checkerboard (page 1)** on a flat surface
@@ -54,12 +59,12 @@ python camera_calibration.py
    - **✅ Below 0.5**: Good to go!
    - **❌ Above 0.5**: Try again with better lighting and closer captures
 
-This generates `config/camera_calibration.yaml`
+This generates `config/camera_calibration_rpi.yaml` (default).
 
 ### 4. Run the Live Localization Demo
 
 ```bash
-python live_localization_demo.py
+python examples/live_localization_demo.py
 ```
 
 1. Set up pages 2+ of the printed AprilTags as shown in the top-down preview (place flat on walls)

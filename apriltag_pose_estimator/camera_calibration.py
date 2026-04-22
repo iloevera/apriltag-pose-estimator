@@ -342,7 +342,7 @@ def _build_cli_parser() -> argparse.ArgumentParser:
     return parser
 
 
-if __name__ == "__main__":
+def main() -> None:
     args = _build_cli_parser().parse_args()
     CameraCalibration.calibrate_from_camera(
         camera_index=args.camera_index,
@@ -351,3 +351,7 @@ if __name__ == "__main__":
         num_images=args.num_images,
         output_yaml_path=args.output,
     )
+
+
+if __name__ == "__main__":
+    main()

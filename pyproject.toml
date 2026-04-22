@@ -21,6 +21,9 @@ dependencies = [
 Repository = "https://github.com/iloevera/apriltag-pose-estimator"
 Issues = "https://github.com/iloevera/apriltag-pose-estimator/issues"
 
+[project.scripts]
+apriltag-calibrate = "apriltag_pose_estimator.camera_calibration:main"
+
 [tool.setuptools.packages.find]
 include = ["apriltag_pose_estimator*"]
 exclude = ["config*", "examples*", "tests*"]
