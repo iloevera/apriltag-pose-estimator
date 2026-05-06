@@ -334,8 +334,7 @@ class PoseEstimator:
         Returns:
             Yaw angle in radians.
         """
-        import math
-        return -math.atan2(R[0, 2], R[2, 2])
+        return math.atan2(R[1, 0], R[0, 0])
 
     def estimate_pose_details(
         self, frame: np.ndarray
